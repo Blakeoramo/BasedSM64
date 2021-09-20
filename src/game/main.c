@@ -18,7 +18,7 @@
 #define MESG_VI_VBLANK 102
 #define MESG_START_GFX_SPTASK 103
 #define MESG_NMI_REQUEST 104
-
+OSViMode VI;
 OSThread D_80339210; // unused?
 OSThread gIdleThread;
 OSThread gMainThread;
@@ -415,6 +415,28 @@ void turn_off_audio(void) {
     }
 }
 
+//void change_vi(OSViMode *mode, int width, int height){
+
+    //mode->comRegs.width = width;
+    //mode->comRegs.xScale = (width * 512)/320;
+   // if(height > 240)
+   // {
+        //mode->comRegs.ctrl |= 0x40;
+        //mode->fldRegs[0].origin = width * 2;
+        //mode->fldRegs[1].origin = width * 4;
+        //mode->fldRegs[0].yScale = 0x2000000|((height * 1024)/240);
+        //mode->fldRegs[1].yScale = 0x2000000|((height * 1024)/240);
+        //mode->fldRegs[0].vStart = mode->fldRegs[1].vStart-0x20002;
+    //}
+    //else
+    //{
+        //mode->fldRegs[0].origin = width * 2;
+        //mode->fldRegs[1].origin = width * 4;
+        //mode->fldRegs[0].yScale = ((height * 1024)/240);
+        //mode->fldRegs[1].yScale = ((height * 1024)/240);
+    //}
+//}
+
 /**
  * Initialize hardware, start main thread, then idle.
  */
@@ -426,15 +448,16 @@ void thread1_idle(UNUSED void *arg) {
     osCreateViManager(OS_PRIORITY_VIMGR);
 #if defined(VERSION_US) || defined(VERSION_SH)
     if (sp24 == TV_TYPE_NTSC) {
-        osViSetMode(&osViModeTable[OS_VI_NTSC_LAN1]);
+       VI = osViModeTable[OS_VI_NTSC_LAN1];
     } else {
-        osViSetMode(&osViModeTable[OS_VI_PAL_LAN1]);
+       VI = osViModeTable[OS_VI_PAL_LAN1];
     }
 #elif defined(VERSION_JP)
-    osViSetMode(&osViModeTable[OS_VI_NTSC_LAN1]);
+    VI = osViModeTable[OS_VI_NTSC_LAN1];
 #else // VERSION_EU
-    osViSetMode(&osViModeTable[OS_VI_PAL_LAN1]);
+    VI = osViModeTable[OS_VI_PAL_LAN1]
 #endif
+	//change_vi(&VI, 640, 480);
     osViBlack(TRUE);
     osViSetSpecialFeatures(OS_VI_DITHER_FILTER_ON);
     osViSetSpecialFeatures(OS_VI_GAMMA_OFF);

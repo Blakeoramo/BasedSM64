@@ -2196,8 +2196,8 @@ static const Vtx vertex_ia8_char[] = {
     {{{     0,     16,      0}, 0, {     0,      0}, {0xff, 0xff, 0xff, 0xff}}},
 #else
     {{{     0,      0,      0}, 0, {     0,    256}, {0xff, 0xff, 0xff, 0xff}}},
-    {{{     8,      0,      0}, 0, {     0,      0}, {0xff, 0xff, 0xff, 0xff}}},
-    {{{     8,     16,      0}, 0, {   480,      0}, {0xff, 0xff, 0xff, 0xff}}},
+    {{{     6,      0,      0}, 0, {     0,      0}, {0xff, 0xff, 0xff, 0xff}}}, // Change X
+    {{{     6,     16,      0}, 0, {   480,      0}, {0xff, 0xff, 0xff, 0xff}}}, // Change X
     {{{     0,     16,      0}, 0, {   480,    256}, {0xff, 0xff, 0xff, 0xff}}},
 #endif
 };

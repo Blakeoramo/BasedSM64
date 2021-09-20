@@ -66,14 +66,14 @@ const Texture *const power_meter_health_segments_lut[] = {
 
 // 0x03029400
 static const Vtx vertex_power_meter_base[] = {
-    {{{   -32,    -32,      0}, 0, {     0,   2016}, {0xff, 0xff, 0xff, 0xff}}},
-    {{{     0,    -32,      0}, 0, {   992,   2016}, {0xff, 0xff, 0xff, 0xff}}},
-    {{{     0,     32,      0}, 0, {   992,      0}, {0xff, 0xff, 0xff, 0xff}}},
-    {{{   -32,     32,      0}, 0, {     0,      0}, {0xff, 0xff, 0xff, 0xff}}},
-    {{{     0,    -32,      0}, 0, {     1,   2016}, {0xff, 0xff, 0xff, 0xff}}},
-    {{{    32,    -32,      0}, 0, {  1024,   2016}, {0xff, 0xff, 0xff, 0xff}}},
-    {{{    32,     32,      0}, 0, {  1024,      0}, {0xff, 0xff, 0xff, 0xff}}},
-    {{{     0,     32,      0}, 0, {     1,      0}, {0xff, 0xff, 0xff, 0xff}}},
+    {{{   -24,    -32,      0}, 0, {     0,   2016}, {0xff, 0xff, 0xff, 0xff}}}, // bottom left
+    {{{     0,    -32,      0}, 0, {   992,   2016}, {0xff, 0xff, 0xff, 0xff}}}, // bottom left
+    {{{     0,     32,      0}, 0, {   992,      0}, {0xff, 0xff, 0xff, 0xff}}}, // top right
+    {{{   -24,     32,      0}, 0, {     0,      0}, {0xff, 0xff, 0xff, 0xff}}}, // top left
+    {{{     0,    -32,      0}, 0, {     1,   2016}, {0xff, 0xff, 0xff, 0xff}}}, // bottom left
+    {{{    24,    -32,      0}, 0, {  1024,   2016}, {0xff, 0xff, 0xff, 0xff}}}, // bottom right
+    {{{    24,     32,      0}, 0, {  1024,      0}, {0xff, 0xff, 0xff, 0xff}}}, // top right
+    {{{     0,     32,      0}, 0, {     1,      0}, {0xff, 0xff, 0xff, 0xff}}}, // top right
 };
 
 // 0x03029480 - 0x03029530
@@ -102,10 +102,10 @@ const Gfx dl_power_meter_base[] = {
 
 // 0x03029530
 static const Vtx vertex_power_meter_health_segments[] = {
-    {{{   -16,    -16,      0}, 0, {     0,    992}, {0xff, 0xff, 0xff, 0xff}}},
-    {{{    15,    -16,      0}, 0, {   992,    992}, {0xff, 0xff, 0xff, 0xff}}},
-    {{{    15,     16,      0}, 0, {   992,      0}, {0xff, 0xff, 0xff, 0xff}}},
-    {{{   -16,     16,      0}, 0, {     0,      0}, {0xff, 0xff, 0xff, 0xff}}},
+    {{{   -12,    -16,      0}, 0, {     0,    992}, {0xff, 0xff, 0xff, 0xff}}},
+    {{{    12,    -16,      0}, 0, {   992,    992}, {0xff, 0xff, 0xff, 0xff}}}, //smaller
+    {{{    12,     16,      0}, 0, {   992,      0}, {0xff, 0xff, 0xff, 0xff}}},
+    {{{   -12,     16,      0}, 0, {     0,      0}, {0xff, 0xff, 0xff, 0xff}}}, //smaller
 };
 
 // 0x03029570 - 0x030295A0

@@ -62,7 +62,7 @@ enum DialogMark { DIALOG_MARK_NONE = 0, DIALOG_MARK_DAKUTEN = 1, DIALOG_MARK_HAN
 #define DEFAULT_DIALOG_BOX_SCALE 19.0f
 
 #if defined(VERSION_US) || defined(VERSION_EU)
-u8 gDialogCharWidths[256] = { // TODO: Is there a way to auto generate this?
+f32 gDialogCharWidths[256] = { // TODO: Is there a way to auto generate this?
     7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  6,  6,  6,  6,  6,  6,
     6,  6,  5,  6,  6,  5,  8,  8,  6,  6,  6,  6,  6,  5,  6,  6,
     8,  7,  6,  6,  6,  5,  5,  6,  5,  5,  6,  5,  4,  5,  5,  3,
@@ -544,7 +544,7 @@ void print_hud_lut_string(s8 hudLUT, s16 x, s16 y, const u8 *str) {
 #ifdef VERSION_JP
         xStride = 14;
 #else
-        xStride = 12; //? Shindou uses this.
+        xStride = 9; //? Shindou uses this. //spacing
 #endif
     }
 
@@ -585,8 +585,8 @@ void print_hud_lut_string(s8 hudLUT, s16 x, s16 y, const u8 *str) {
                 }
 
                 gSPDisplayList(gDisplayListHead++, dl_rgba16_load_tex_block);
-                gSPTextureRectangle(gDisplayListHead++, curX << 2, curY << 2, (curX + 16) << 2,
-                                    (curY + 16) << 2, G_TX_RENDERTILE, 0, 0, 1 << 10, 1 << 10);
+                gSPTextureRectangle(gDisplayListHead++, curX << 2, curY << 2, (curX + 12) << 2,
+                                    (curY + 16) << 2, G_TX_RENDERTILE, 0, 0, 1365.4f, 1 << 10); //PAUSE FILE SELECT TEXT B.S.
 
                 curX += xStride;
 #ifndef VERSION_JP
@@ -2136,7 +2136,7 @@ void print_animated_red_coin(s16 x, s16 y) {
     s32 timer = gGlobalTimer;
 
     create_dl_translation_matrix(MENU_MTX_PUSH, x, y, 0);
-    create_dl_scale_matrix(MENU_MTX_NOPUSH, 0.2f, 0.2f, 1.0f);
+    create_dl_scale_matrix(MENU_MTX_NOPUSH, 0.15f, 0.2f, 1.0f);
     gDPSetRenderMode(gDisplayListHead++, G_RM_TEX_EDGE, G_RM_TEX_EDGE2);
 
     switch (timer & 6) {

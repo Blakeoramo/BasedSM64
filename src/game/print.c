@@ -168,7 +168,7 @@ void parse_width_field(const char *str, s32 *srcIndex, u8 *width, s8 *zeroPad) {
  * Warning: this fails on too large numbers, because format_integer has bugs
  * related to overflow. For romhacks, prefer sprintf + print_text.
  */
-void print_text_fmt_int(s32 x, s32 y, const char *str, s32 n) {
+void print_text_fmt_int(f32 x, f32 y, const char *str, s32 n) {
     char c = 0;
     s8 zeroPad = FALSE;
     u8 width = 0;
@@ -222,7 +222,7 @@ void print_text_fmt_int(s32 x, s32 y, const char *str, s32 n) {
 /**
  * Prints text in the colorful lettering at given X, Y coordinates.
  */
-void print_text(s32 x, s32 y, const char *str) {
+void print_text(f32 x, f32 y, const char *str) {
     char c = 0;
     s32 length = 0;
     s32 srcIndex = 0;
@@ -253,7 +253,7 @@ void print_text(s32 x, s32 y, const char *str) {
 /**
  * Prints text in the colorful lettering centered at given X, Y coordinates.
  */
-void print_text_centered(s32 x, s32 y, const char *str) {
+void print_text_centered(f32 x, f32 y, const char *str) {
     char c = 0;
     UNUSED s8 unused1 = 0;
     UNUSED s32 unused2 = 0;
@@ -364,42 +364,44 @@ void add_glyph_texture(s8 glyphIndex) {
 /**
  * Clips textrect into the boundaries defined.
  */
-void clip_to_bounds(s32 *x, s32 *y) {
-    if (*x < TEXRECT_MIN_X) {
-        *x = TEXRECT_MIN_X;
-    }
+//void clip_to_bounds(s32 *x, s32 *y) {
+   // if (*x < TEXRECT_MIN_X) {
+        //*x = TEXRECT_MIN_X;
+   // }
 
-    if (*x > TEXRECT_MAX_X) {
-        *x = TEXRECT_MAX_X;
-    }
+  //  if (*x > TEXRECT_MAX_X) {
+      //  *x = TEXRECT_MAX_X;
+   // }
 
-    if (*y < TEXRECT_MIN_Y) {
-        *y = TEXRECT_MIN_Y;
-    }
+   // if (*y < TEXRECT_MIN_Y) {
+      //  *y = TEXRECT_MIN_Y;
+   // }
 
-    if (*y > TEXRECT_MAX_Y) {
-        *y = TEXRECT_MAX_Y;
-    }
-}
+    //if (*y > TEXRECT_MAX_Y) {
+       // *y = TEXRECT_MAX_Y;
+   // }
+//}
 #endif
 
 /**
  * Renders the glyph that's set at the given position.
  */
-void render_textrect(s32 x, s32 y, s32 pos) {
-    s32 rectBaseX = x + pos * 12;
+void render_textrect(f32 x, f32 y, f32 pos) {
+    s32 rectBaseX = x + pos * 9; //spacing
     s32 rectBaseY = 224 - y;
     s32 rectX;
     s32 rectY;
 
 #ifndef WIDESCREEN
     // For widescreen we must allow drawing outside the usual area
-    clip_to_bounds(&rectBaseX, &rectBaseY);
+    //clip_to_bounds(&rectBaseX, &rectBaseY);
 #endif
     rectX = rectBaseX;
     rectY = rectBaseY;
-    gSPTextureRectangle(gDisplayListHead++, rectX << 2, rectY << 2, (rectX + 15) << 2,
-                        (rectY + 15) << 2, G_TX_RENDERTILE, 0, 0, 4 << 10, 1 << 10);
+    gSPTextureRectangle(gDisplayListHead++, rectX << 2, rectY << 2, (rectX + 11) << 2,
+                        (rectY + 15) << 2, G_TX_RENDERTILE, 0, 0, 5390, 1 << 10);
+	//gSPTextureRectangle(gDisplayListHead++, rectX << 2, rectY << 2, (rectX + 12) << 2,
+                        //(rectY + 15) << 2, G_TX_RENDERTILE, 0, 0, 5 << 10, 1 << 10);
 }
 
 /**
